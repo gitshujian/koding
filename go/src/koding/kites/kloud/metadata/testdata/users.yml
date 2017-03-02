@@ -1,0 +1,12 @@
+#cloud-config
+output:
+    all: '| tee -a /var/log/cloud-init-output.log'
+hostname: 'user'
+
+users:
+  - name: 'otheruser'
+    lock_passwd: True
+    gecos: Koding
+    groups: {{join .Groups ","}}
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    shell: /bin/bash
